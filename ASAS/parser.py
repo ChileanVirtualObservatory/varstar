@@ -28,7 +28,7 @@ def get_file_data(filename):
 					pairs[key]= values[0]
 				else:
 					pairs[key]= values
-				#If a data block has been completely read, add it to the data. 
+				#If a data block has been completely read, add it to the data.
 				if actuald!=None:
 					pairs.update(actuald)
 					data.append(pairs)
@@ -76,7 +76,7 @@ def save_to_fits(dictionary_list,filename,type_to_format={float:"E",str:"20A"}):
 	hdus= fits.HDUList()
 	#Creating the primary hdu to contain the meta
 	primary_hdu = fits.PrimaryHDU()
-	primary_hdu.header['history']= "From the ASAS records, parsed by ASASparser the "+str(strftime("%d/%m/%Y")+" (dd/mm/yyyy)")
+	primary_hdu.header['history']= "From the ASAS records, parsed by ACALIB ASAS parser the "+str(strftime("%d/%m/%Y")+" (dd/mm/yyyy)")
 	hdus.append(primary_hdu)
 	#Creating the bintables HDUS for each dictionary
 	for dictionary in dictionary_list:
@@ -91,68 +91,12 @@ def save_to_fits(dictionary_list,filename,type_to_format={float:"E",str:"20A"}):
 			if not type(val)==list:
 				#Goes to the HDU's header
 				if type(val)!=tuple:
-					tbhdu.header[key]= val 
+					tbhdu.header[key]= val
 				else:
 					val= tuple(map(lambda x: ''.join(x),' '.join(val).split(';')))
 					tbhdu.header[key]= val
 		hdus.append(tbhdu)
-		"""
-		# The primary HDU for the dictionary.
-		primary_hdu = fits.PrimaryHDU()
-		# Creating the binary table HDU.
-		columns= []
-		for key,val in dictionary.iteritems():
-			if type(val)==list:
-				#Goes to the table.
-				columns.append( fits.Column(name=key, array=val, format=type_to_format[type(val[0])] ))
-			else:
-				#Goes to the primary HDU
-				if type(val)!=tuple:
-					primary_hdu.header[key]= val 
-				else:
-					val= tuple(map(lambda x: ' '.join(x),' '.join(val).split(';')))
-					primary_hdu.header[key]= val
-		column_definitions = fits.ColDefs(columns)
-		tbhdu = fits.BinTableHDU.from_columns(column_definitions)
-		hdus.append(primary_hdu)
-		hdus.append(tbhdu)
-		"""
-		"""
-		dict_to_table={}
-		for key,val in dictionary.iteritems():
-			if type(val)==list:
-				dict_to_table[key]= val
-		table= Table(dict_to_table)
-		hdu= fits.ASCITableHDU(table)
-		"""
-		#
-		"""
-		data_matrix=[]
-		hdu = fits.PrimaryHDU()
-		line_number=0
-		for key,val in dictionary.items():
-			if type(val) == list:
-				hdu.header['LIN'+'0'*(5-len(str(line_number)))+str(line_number)]= key
-				line_number+=1
-				data_matrix.append(val)
-			else:
-				if type(val)!=tuple:
-					hdu.header[key]= val 
-				else:
-					val= tuple(map(lambda x: ' '.join(x),' '.join(val).split(';')))
-					hdu.header[key]= val
-		
-		#Saving the hdu:
-		array= numpy.asarray(data_matrix)
-		hdu.data= array
-		hdus.append(hdu)
-		"""
+
 	output_file= open(filename,"w")
 	hdus.writeto(output_file)
 	output_file.close()
-
-if __name__=="__main__":
-	dictionary_list= get_files_data(["test/000006+2553.2","test/000007+1844.3"])
-	print dictionary_list
-	save_to_fits(dictionary_list,"test/output.fits")
-	print "Tests done!"
