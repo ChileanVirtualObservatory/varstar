@@ -2,7 +2,7 @@
 
 Application to detect long term variable starts from series of data points.
 
-![Example fit](img/bestfitever.png)
+![Example fit](img/best_fit_ever.png)
 
 This application is designed to receive a serie of points indicating the intensity of variable star candidates from a serie of observations distributed in time, with the following characteristics:
 
