@@ -41,7 +41,7 @@ The point ponderation is the multiplication of the following functions:
 
 2. Clustered ponderation:
 
-![Clustered ponderation](http://mathurl.com/jkvfb9q.png)
+  ![Clustered ponderation](http://mathurl.com/jkvfb9q.png)
 
 # TODOs
 
