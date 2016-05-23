@@ -34,10 +34,10 @@ The point ponderation is the multiplication of the following functions:
 
 1. Outlier ponderation:
 
-![Outlier ponderation](http://mathurl.com/h3aqkcb.png)
+  ![Outlier ponderation](http://mathurl.com/h3aqkcb.png)
 
-Where rho\_max is set to `3.5` and rho\_min to `2.5`.
-mu is the mean and sigma is standard desviation of the magnitudes.
+  Where rho\_max is set to `3.5` and rho\_min to `2.5`.
+  mu is the mean and sigma is standard desviation of the magnitudes.
 
 2. Clustered ponderation:
 
