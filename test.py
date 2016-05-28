@@ -8,6 +8,7 @@ def read_random_asas_test(minlen=20):
     while 1:
         #Pick a random file to get data from it.
         filename= choice(listdir("data"))
+        print("testing: ",filename)
         fil= open("data/"+filename)
         reading= False
         datasets= []
@@ -27,10 +28,12 @@ def read_random_asas_test(minlen=20):
                     if lum<=29.9 and (grade=='A' or grade=='B'):
                         datasets[-1].append((tim,lum))
         fil.close()
+        print([len(x) for x in datasets])
         if len(datasets)>0:
             final= choice(datasets)
             if len(final)>=minlen:
                 break
+    print(filename)
     return final
 
 def main():

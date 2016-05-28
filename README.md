@@ -41,7 +41,9 @@ mu is the mean and sigma is standard desviation of the magnitudes.
 
 2. Clustered ponderation:
 
-![Clustered ponderation](http://mathurl.com/jkvfb9q.png)
+![Clustered ponderation](http://www.texrendr.com/?eqn=P_i%3D%20%5Cfrac%7B1%7D%7B%5Csum_%7Bj%7De%5E%7B-%5Cbeta%20%5Cleft(%7B%7Cx_i-x_j%7C%5Cfrac%7Bn%5E2%7D%7B%5Csum_a%20%5Csum_b%20%7C%20x_a-x_b%7C%7D%7D%5Cright)%7D%7D)
+
+Where beta is the decay by clustering and is 10 for this application. Larger values imply that the ponderation decay due to near points propagates less.
 
 # TODOs
 
