@@ -2,7 +2,7 @@
 
 Application to detect long term variable starts from series of data points.
 
-![Example fit](img/bestfitever.png)
+![Example fit](img/best_fit_ever.png)
 
 This application is designed to receive a serie of points indicating the intensity of variable star candidates from a serie of observations distributed in time, with the following characteristics:
 
@@ -34,10 +34,10 @@ The point ponderation is the multiplication of the following functions:
 
 1. Outlier ponderation:
 
-![Outlier ponderation](http://mathurl.com/h3aqkcb.png)
+  ![Outlier ponderation](http://mathurl.com/h3aqkcb.png)
 
-Where rho\_max is set to `3.5` and rho\_min to `2.5`.
-mu is the mean and sigma is standard desviation of the magnitudes.
+  Where rho\_max is set to `3.5` and rho\_min to `2.5`.
+  mu is the mean and sigma is standard desviation of the magnitudes.
 
 2. Clustered ponderation:
 
