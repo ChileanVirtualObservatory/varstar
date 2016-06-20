@@ -13,7 +13,7 @@ def get_file_data(filename):
 	"""
 	document= open(filename,'r')
 	data=[]
-	pairs={'ORIGIN':filename.replace('/','\\')}
+	pairs={'ORIGIN':filename.replace('/','\\'),'FIRST_MAG':'None'}
 	actuald=None #Will be used to save the magnitude's table
 	for line in document:
 		if line[0]=='#':
@@ -33,14 +33,17 @@ def get_file_data(filename):
 					pairs.update(actuald)
 					data.append(pairs)
 					actuald=None
-					pairs={'ORIGIN':filename}
+					pairs={'ORIGIN':filename.replace('/','\\'),'FIRST_MAG':'None'}
 			else:
 				#It's a multiple key description
 				keys= re.findall(r"\s\S+",line)
 				keys= map(lambda x: x[1:],keys)
+				#Check if this are MAGnitudes, if so, add the first one to the dictionary.
+				for k in keys:
+					if k[:4]=="MAG_":
 				#Restart the current dictionary
 				actuald={}
-				for k in keys:
+				for k in keys: pairs['FIRST_MAG']= k
 					actuald[k]=[]
 		else:
 			#Extract the values and append them to the dictionary of multiple keys.

@@ -37,6 +37,13 @@ def read_random_asas_test(minlen=20):
     return final
 
 def main():
+    # Pick random filename
+    filename= choice(listdir("data"))
+    data= vss.get_file_data(filename)
+    print(data)
+    vss.save_to_fits(data,"fits/"+filename)
+    
+    # Open another to test
     data= read_random_asas_test()
     fitting= vss.fit(data)
     vss.plot(data)
